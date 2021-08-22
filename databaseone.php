@@ -1,14 +1,16 @@
 <?php
 require_once 'db_cred.php';
 
-function db_queryAll($sql, $conn) {
+function db_queryAll($sql, $conn, $word_list= []) {
     try{
         $cmd = $conn->prepare($sql);
-        $cmd -> execute();
+        $cmd -> execute($word_list);
         $managers = $cmd->fetchAll();
         return $managers;
     } catch(Exception $e){
         header("Location: m-error.php");
+        //mail('ibrahimulu_77@hotmail.com', 'PDO Error', $e);
+        header("Location: error.php");
     }
 }
 

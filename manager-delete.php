@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
      $manager_name= $manager['manager_name'];
      $team = $manager['team'];
 
+    $title_tag="Delete Manager";
     include_once 'shared/topone.php'
 ?>
     <div class="container">
@@ -80,5 +81,5 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $cmd = $conn->prepare($sql);
     $cmd -> execute();
 
-    header("Location: managers.php");
+    header("Location: managers.php?m=1&msg=Zidane");
 }

@@ -12,25 +12,30 @@ $conn = db_connect();
 ?>
 
 <?php
-
+$title_tag = "Dream Manager";
 include_once 'shared/topone.php';
 
 //build a sql query
 $sql = "SELECT * FROM manager";
+
+
+$sql .=" ORDER by manager_name";
 $managers = db_queryAll($sql, $conn);
+
+
 ?>
 
 
-<table class="table table-secondary rable-striped table-border-cevondary fs-5 mt-4">
+<table class="sortable table table-secondary table-striped table-border-secondary fs-5 mt-4">
   <thead>
     <tr>
-      <th scope="col">Manager ID</th>
+      <th scope="col"class="sorttable_nosort">Manager ID</th>
       <th scope="col">Year</th>
       <th scope="col">Manager Name</th>
       <th scope="col">Team</th>
       <?php if (is_logged_in()) { ?>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th> 
+      <th scope="col" class="col-1 sorttable_nosort">Edit</th>
+      <th scope="col" class="col-1 sorttable_nosort">Delete</th> 
       <?php } ?>
     </tr>
   </thead>
@@ -56,8 +61,12 @@ $managers = db_queryAll($sql, $conn);
 
 
 
+
+
+
 <?php
-
-
+$m= filter_var($_GET['m'] ?? '', FILTER_SANITIZE_STRING);
+$msg = filter_var($_GET['msg'] ?? '', FILTER_SANITIZE_STRING);
+display_toast($m, $msg);
 include_once 'shared/footerone.php';
 ?>

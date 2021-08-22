@@ -15,7 +15,7 @@ $conn = db_connect();
 
 <?php
 
-
+$title_tag="Welcome to Manager Game";
 include_once 'shared/topone.php';
 
 ?>
